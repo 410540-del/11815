@@ -1,0 +1,33 @@
+<html>
+    <head>
+
+        
+        <tittle>0922</tittle>
+        <style>
+div{
+    height: 100px;
+    background-color: blueviolet;
+    display: inline-block;
+}   
+    .c2{
+        background-color: rgb(255, 255, 255);
+    }
+        .c1{
+            background-color: rgb(178, 25, 238);
+
+        }
+
+
+
+           </style>
+</head>
+<body>
+     <div id="d1" class="c1"></div>
+     <div id="d2" class="c2"></div>
+     <div id="d3" class="c3"></div>
+
+
+
+
+            <body>
+            <html>
