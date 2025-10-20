@@ -3,7 +3,7 @@
     <title>css漸層</title>
     <style>
       div {
-        margin-bottom:5px;
+        margin:5px;
       }
 
 #d1{
@@ -19,12 +19,51 @@ background:  linear-gradient(to right, red, yellow);
   width: 400px;
   background: linear-gradient(90deg ,red,orange,yellow,blue,)
 }
+#d3{
+  height: 50px;
+  width:400px;
+  background: linear-gradient(90deg,red,white 33%,white 66%,bule);
 
+}
+#d4{
+   height:200px;
+   width:200px;
+   background:radial-gradient(circle,red,black,white) ;
+   
+}
+#d5{
+     height:200px;
+     width:200px;
+background:radial-gradient(circle,red,black 30%,white) ;
+}
+#d6{
+     height:200px;
+     width:200px;
+background:repeating-radial-gradient(circle,red 25%,black 30%,white 35%) ;
+}
+#d7{
+   height:400px;
+   width:400px;
+   background:conic-gradient(from 90deg circle,red,yellow,blue,red) ;
+   display: inline-block;
+}
+#d8{
+   height:400px;
+   width:400px;
+   background:repeating-conic-gradient(red 30%,yellow 35%,blue,red) ;
+   display:inline-block;
+}
       </style>
       </head>
       <body>
         <div id="d1"></div>
         <div id="d2"></div>
         <div id="d3"></div>
+        <div id="d4"></div>
+        <div id="d5"></div>
+        <div id="d6"></div>
+        <div id="d7"></div>
+        <div id="d8"></div>
+        <div id="d9"></div>
       </body>
       </html>
