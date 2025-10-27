@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>css動畫</title>
+    <style>
+      div {
+        margin:5px;
+   }
+@keyframes k1{
+    0% {background: linear-gradient(90deg,red,white 50%,bule);}
+    12% {background: linear-gradient(90deg,red,white 70%,bule);}
+    36% {background: linear-gradient(90deg,red,white 90%,bule);}
+    48% {background: linear-gradient(90deg,red,white 70%,bule);}
+    56% {background: linear-gradient(90deg,red,white 50%,bule);}
+    65% {background: linear-gradient(90deg,red,white 30%,bule);}
+    76% {background: linear-gradient(90deg,red,white 10%,bule);}
+    88% {background: linear-gradient(90deg,red,white 30%,bule);}
+    100% {background: linear-gradient(90deg,red,white 50%,bule);}
+    
+}
+#a1{
+  height: 50px;
+  width: 400px;
+  animation: k1 1s infinite linear; 
+
+}
+@keyframes k2{
+    0% {background: linear-gradient(0deg,red,white 50%,bule);}
+    8% {background: linear-gradient(30deg,red,white 70%,bule);}
+    17% {background: linear-gradient(60deg,red,white 90%,bule);}
+    25% {background: linear-gradient(90deg,red,white 50%,bule);}
+    33% {background: linear-gradient(120deg,red,white 70%,bule);}
+    42% {background: linear-gradient(150deg,red,white 90%,bule);}
+    50% {background: linear-gradient(180deg,red,white 90%,bule);}
+    58% {background: linear-gradient(210deg,red,white 70%,bule);}
+    66% {background: linear-gradient(240deg,red,white 50%,bule);}
+    75% {background: linear-gradient(270deg,red,white 30%,bule);}
+    83% {background: linear-gradient(300deg,red,white 10%,bule);}
+    92% {background: linear-gradient(330deg,red,white 30%,bule);}
+    100% {background: linear-gradient(360deg,red,white 50%,bule);}
+}
+#a2{
+  height: 50px;
+  width: 400px;
+  animation: k2 0.5s infinite linear; 
+
+}
+@keyframes k3{
+    0%{background:repeating-radial-gradient(circle,red 25%,black 30%,white 35%) ;}
+    50%{background:repeating-radial-gradient(circle,red 25%,black 30%,white 35%) ;}
+     75%{background:repeating-radial-gradient(circle,red 25%,black 30%,white 35%) ;}
+    100%{background:repeating-radial-gradient(circle,red 25%,black 30%,white 35%) ;}
+}
+#a3{
+  height: 50px;
+  width: 400px;
+  animation: k3 0.1s infinite linear; 
+}
+      </style>
+      </head>
+      <body>
+        <div id="a1"></div>
+        <div id="a2"></div>
+        <div id="a3"></div>
+        <div id="a4"></div>
+
+      </body>
+      </html>
