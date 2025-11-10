@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>3s介紹</title>
+        <script>
+        function hello(){
+            console.log("hello");
+            alert ("你好");
+            prompt("你是誰");
+            confirm("確定");
+            parsenInt("將數字轉化成整數,不是數字的回應NaN");
+        }
+        function sum(){
+            var d1=parseint(document.getElentbyId("d1").value);
+            var d2=parseint(document.getElentbyId("d2").value);
+            var d3=document.getElentbyId("d3");
+            var ans=document.getElentbyId("ans");
+            d3.value=d1+d2;
+            
+        }
+        
+        </script>
+    </head>
+    <body>
+        <input type="text" value="文字內容" placeholder="輸入文字用" value="文字內容"><br>
+        <input type="passward" placeholder="請輸入密碼" value="1234"><br>
+       <input type="number" placeholder="數字" min=0 max=20 step="2"><br>
+      <input type="date" value="2025-11-10"><!--value格式/;YYYY-MM-DD--><br>
+      <input id="dt1" type="daytime-local"><!--value格式/;YYYY-MM-DD-->><br>
+      <input type="color" value="#0000ff">
+      <input type="number" id="d1">+ <input type="d2">
+      <button onlick="sum();">=</button> <input type="number" id="d3">
+        <hr>
+        <button onelick="hello"();>按鈕</button>
+    </body>
+</html>
