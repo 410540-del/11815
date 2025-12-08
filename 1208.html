@@ -1,0 +1,71 @@
+<html>
+    <hesd>
+        <style>
+          #map{
+            width:800px;
+            height:800px;
+            background: url("pic/grass.jpg");
+            background-size: 30%;
+            background-repeat:repeat;
+            animation: bg_move is linear infinite;
+          }
+          @keyframes bg_move{
+            0%{background-position: 0% 0%; }
+            30%{background-position: 5px 0%;}
+            100%{background-position: 0% 0%;}
+
+          }
+          #role{
+            width:48px;
+            height:72px;
+            background-image: url("pic/sprite.png");
+            background-position: 0px -288px;
+            animation: walking 0.5s steps(3)infinite ;
+            position: absolute;
+            top:364;
+            left:376;
+            
+
+            
+          }
+          @keyframes walking{
+            0% {background-position: 0px;}
+            100%{background: position -72px;} 
+          }
+        </style>
+        <script>
+               function mykeydown () {
+                event.preventDefal();
+                var role=document.getElementByld("role")
+                if(event.key=="Arrowleft"){
+                    role.style.backgroundPositionY="0px";
+                } if(role.posY > 728)role.posY++;
+                  if(event.key=="Arrowleft"){
+                     role.style.backgroundPositionY="72px";
+                }   if(role.posX > 0) role.posX--;
+                   if(event.key=="Arrowleft"){
+                    role.style.backgroundPositionY="144px";
+                } if(role.posX > 752)role.posX++;
+                  if(event.key=="Arrowleft"){
+                     role.style.backgroundPositionY="216px";
+                     if(role.posY > 0) role.posY--;
+                }   
+                       role.style.left=role.posX+"px";
+                       role.style.top=role.posy+"py";
+
+                console.log(event.key);
+               }
+               function page_inif(){
+                var role=document.getElementByld("role")
+                role.posX=376;
+                role.posY=364;
+               }
+        </script>
+    </hesd>
+    <body  onload="page_init()" onkeydown="mykeydown">
+
+        <div id="map">
+           <div id="fole"></div>
+        </div>
+    </body>
+</html>
