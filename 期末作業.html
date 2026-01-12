@@ -1,20 +1,158 @@
-<html>
+<html>   
     <head>
         <title>掃雷</title>
        <style>
-    #map {
-    width:800px;
-    height:800px;
-    background:url("pic/mindmap.png");   
-    position:relative;
-   }
+   body{
+    background:#000000;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+#board{
+    display:grid;
+    grid-template-columns:repeat(8,40px);
+    gap:2px;
+    margin-bottom:10px;
+}
+
+.cell{
+    width:40px;
+    height:40px;
+    background:#978f8f;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+    cursor:pointer;
+    user-select:none;
+}
+
+.cell.open{
+    background:#ccc;
+    cursor:default;
+}
+
+.cell.mine{
+    background:rgb(55, 0, 255);
+}
+
   
 
        </style>
+    <script>
+        const SIZE =8;
+        const TOTAL =SIZE*SIZE;
+        const MINE_COUNT=10;
+        let mines = [];
+        let opened = [];
+        function gamestart(){
+            const board =
+              document.getElementById("board");
+              board.innerHTML="";
+              mines =[];
+              opened=Array(TOTAL).fill(false);
 
-    </head>
 
+              while(mines.length < MINE_COUNT){
+                let r=
+                Math.floor(Math.random()*TOTAL);
+                if(!mines.includes(r)) mines.push(r);
 
+              }
+           for(let i=0;i<TOTAL;i++){
+            const cell = 
+            document.createElement("div");
+            cell.className="cell";
+            cell.onclick = () =>opencell(i,cell);
+            board.appendChild(cell);
+
+        
+           }
+        }
+        function openCell(index,cell){
+            if(opened[index])return;
+            cell.classList.add("open");
+            if(mines.includes(index)){
+                cell.textContent="";
+                cell.classList.add("mine");
+                revealAll();
+                alert("遊戲結束");
+
+            }
+        }
+          if(chegkwin()){
+            revealAll();
+            alert("遊戲獲勝");
+          }
+
+function countMines(index){
+    let r = Math.floor(index/SIZE);
+    let c = index % SIZE;
+    let count = 0;
+
+    for(let i=-1;i<=1;i++){
+        for(let j=-1;j<=1;j++){
+            let nr = r+i, nc = c+j;
+            if(nr>=0 && nr<SIZE && nc>=0 && nc<SIZE){
+                let ni = nr*SIZE+nc;
+                if(mines.includes(ni)) count++;
+            }
+        }
+    }
+    return count;
+}
+
+function openAround(index){
+    let r = Math.floor(index/SIZE);
+    let c = index % SIZE;
+
+    for(let i=-1;i<=1;i++){
+        for(let j=-1;j<=1;j++){
+            let nr = r+i, nc = c+j;
+            if(nr>=0 && nr<SIZE && nc>=0 && nc<SIZE){
+                let ni = nr*SIZE+nc;
+                const cell = document.getElementById("board").children[ni];
+                if(!opened[ni]) openCell(ni,cell);
+            }
+        }
+    }
+}
+
+function revealAll(){
+    const board = document.getElementById("board");
+    for(let i=0;i<TOTAL;i++){
+        const cell = board.children[i];
+        if(mines.includes(i)){
+            cell.textContent="";
+            cell.classList.add("mine");
+        }else{
+            let n = countMines(i);
+            if(n>0) cell.textContent=n;
+        }
+        cell.classList.add("open");
+    }
+}
+
+function checkWin(){
+    let safe = TOTAL - MINE_COUNT;
+    let openedCount = opened.filter(v=>v).length;
+    return openedCount === safe;
+}
+</script>
+</head>
+
+<body>
+<div id="board"></div>
+<button onclick="gamestart()">遊戲結束</button>
+</body>
 </html>
+
+
+
+    
         
    
