@@ -65,13 +65,23 @@ function gamestart(){
     }
 
     // 建立格子
-    for(let i=0;i<TOTAL;i++){
+    function gamestart(){
+    const board = document.getElementById("board");
+    board.innerHTML = "";
+
+    for(let i = 0; i < 64; i++){
         const cell = document.createElement("div");
         cell.className = "cell";
-        cell.onclick = ()=>openCell(i,cell);
+
+        cell.onclick = function(){
+            cell.classList.add("open");
+            cell.textContent = "✓";
+        };
+
         board.appendChild(cell);
     }
 }
+
 
 function openCell(index,cell){
     if(opened[index]) return;
