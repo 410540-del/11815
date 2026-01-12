@@ -1,9 +1,12 @@
-<html>   
-    <head>
-        <title>掃雷</title>
-       <style>
-   body{
-    background:#000000;
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>掃雷 8×8</title>
+
+<style>
+body{
+    background:#222;
     color:white;
     display:flex;
     flex-direction:column;
@@ -22,7 +25,7 @@
 .cell{
     width:40px;
     height:40px;
-    background:#978f8f;
+    background:#888;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -37,57 +40,65 @@
 }
 
 .cell.mine{
-    background:rgb(55, 0, 255);
+    background:red;
+}
+</style>
+
+<script>
+const SIZE = 8;
+const TOTAL = SIZE * SIZE;
+const MINE_COUNT = 10;
+
+let mines = [];
+let opened = [];
+
+function gamestart(){
+    const board = document.getElementById("board");
+    board.innerHTML = "";
+    mines = [];
+    opened = Array(TOTAL).fill(false);
+
+    // 產生地雷
+    while(mines.length < MINE_COUNT){
+        let r = Math.floor(Math.random()*TOTAL);
+        if(!mines.includes(r)) mines.push(r);
+    }
+
+    // 建立格子
+    for(let i=0;i<TOTAL;i++){
+        const cell = document.createElement("div");
+        cell.className = "cell";
+        cell.onclick = ()=>openCell(i,cell);
+        board.appendChild(cell);
+    }
 }
 
-  
+function openCell(index,cell){
+    if(opened[index]) return;
+    opened[index] = true;
+    cell.classList.add("open");
 
-       </style>
-    <script>
-        const SIZE =8;
-        const TOTAL =SIZE*SIZE;
-        const MINE_COUNT=10;
-        let mines = [];
-        let opened = [];
-        function gamestart(){
-            const board =
-              document.getElementById("board");
-              board.innerHTML="";
-              mines =[];
-              opened=Array(TOTAL).fill(false);
+    if(mines.includes(index)){
+        cell.textContent="💣";
+        cell.classList.add("mine");
+        revealAll();
+        alert("💥 踩到地雷，遊戲結束！");
+        return;
+    }
 
+    let count = countMines(index);
+    if(count>0){
+        cell.textContent = count;
+    }else{
+        cell.textContent = "";
+        openAround(index);
+    }
 
-              while(mines.length < MINE_COUNT){
-                let r=
-                Math.floor(Math.random()*TOTAL);
-                if(!mines.includes(r)) mines.push(r);
-
-              }
-           for(let i=0;i<TOTAL;i++){
-            const cell = 
-            document.createElement("div");
-            cell.className="cell";
-            cell.onclick = () =>opencell(i,cell);
-            board.appendChild(cell);
-
-        
-           }
-        }
-        function openCell(index,cell){
-            if(opened[index])return;
-            cell.classList.add("open");
-            if(mines.includes(index)){
-                cell.textContent="";
-                cell.classList.add("mine");
-                revealAll();
-                alert("遊戲結束");
-
-            }
-        }
-          if(chegkwin()){
-            revealAll();
-            alert("遊戲獲勝");
-          }
+    if(checkWin()){
+        revealAll();
+        alert("🎉 恭喜你掃雷成功！");
+    }
+}
 
 function countMines(index){
     let r = Math.floor(index/SIZE);
@@ -127,7 +138,7 @@ function revealAll(){
     for(let i=0;i<TOTAL;i++){
         const cell = board.children[i];
         if(mines.includes(i)){
-            cell.textContent="";
+            cell.textContent="💣";
             cell.classList.add("mine");
         }else{
             let n = countMines(i);
@@ -147,12 +158,6 @@ function checkWin(){
 
 <body>
 <div id="board"></div>
-<button onclick="gamestart()">遊戲結束</button>
+<button onclick="gamestart()">開始遊戲</button>
 </body>
 </html>
-
-
-
-    
-        
-   
