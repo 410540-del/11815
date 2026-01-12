@@ -59,6 +59,7 @@ function gamestart(){
     opened = Array(TOTAL).fill(false);
 }
     // 產生地雷
+    function gamestart(){}
     while(mines.length < MINE_COUNT){
         let r = Math.floor(Math.random()*TOTAL);
         if(!mines.includes(r)) mines.push(r);
