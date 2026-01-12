@@ -52,12 +52,12 @@ const MINE_COUNT = 10;
 let mines = [];
 let opened = [];
 
-function gamestart(){}
+function gamestart(){
     const board = document.getElementById("board");
     board.innerHTML = "";
     mines = [];
     opened = Array(TOTAL).fill(false);
-
+}
     // 產生地雷
     while(mines.length < MINE_COUNT){
         let r = Math.floor(Math.random()*TOTAL);
